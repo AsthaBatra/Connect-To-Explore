@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ESModelStoreContainer" CdmEntityContainer="ESEntities">
+    <EntitySetMapping Name="certifications">
+      <EntityTypeMapping TypeName="ESModel.certification">
+        <MappingFragment StoreEntitySet="certifications">
+          <ScalarProperty Name="certification_id" ColumnName="certification_id" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Issued_By" ColumnName="Issued_By" />
+          <ScalarProperty Name="Year_of_Certfication" ColumnName="Year_of_Certfication" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="connections">
+      <EntityTypeMapping TypeName="ESModel.connection">
+        <MappingFragment StoreEntitySet="connections">
+          <ScalarProperty Name="connections_id" ColumnName="connections_id" />
+          <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+          <ScalarProperty Name="reciever_id" ColumnName="reciever_id" />
+          <ScalarProperty Name="connections_date" ColumnName="connections_date" />
+          <ScalarProperty Name="connections_status" ColumnName="connections_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="educations">
+      <EntityTypeMapping TypeName="ESModel.education">
+        <MappingFragment StoreEntitySet="education">
+          <ScalarProperty Name="education_id" ColumnName="education_id" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="InstitutionorOrganisation" ColumnName="InstitutionorOrganisation" />
+          <ScalarProperty Name="Year_of_passing" ColumnName="Year_of_passing" />
+          <ScalarProperty Name="education_aggregate" ColumnName="education_aggregate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="posts">
+      <EntityTypeMapping TypeName="ESModel.post">
+        <MappingFragment StoreEntitySet="posts">
+          <ScalarProperty Name="post_descp" ColumnName="post_descp" />
+          <ScalarProperty Name="post_title" ColumnName="post_title" />
+          <ScalarProperty Name="post_id" ColumnName="post_id" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="post_date" ColumnName="post_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="ESModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="confirm_pwd" ColumnName="confirm_pwd" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="profile_type" ColumnName="profile_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users_details">
+      <EntityTypeMapping TypeName="ESModel.users_details">
+        <MappingFragment StoreEntitySet="users_details">
+          <ScalarProperty Name="dp" ColumnName="dp" />
+          <ScalarProperty Name="users_details_id" ColumnName="users_details_id" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="short_description" ColumnName="short_description" />
+          <ScalarProperty Name="organisation" ColumnName="organisation" />
+          <ScalarProperty Name="education" ColumnName="education" />
+          <ScalarProperty Name="experience" ColumnName="experience" />
+          <ScalarProperty Name="projects" ColumnName="projects" />
+          <ScalarProperty Name="certifications" ColumnName="certifications" />
+          <ScalarProperty Name="awards" ColumnName="awards" />
+          <ScalarProperty Name="interests" ColumnName="interests" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

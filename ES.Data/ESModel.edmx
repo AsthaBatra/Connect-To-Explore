@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="certifications">
+          <Key>
+            <PropertyRef Name="certification_id" />
+          </Key>
+          <Property Name="certification_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="256" />
+          <Property Name="Issued_By" Type="nvarchar(max)" />
+          <Property Name="Year_of_Certfication" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="connections">
+          <Key>
+            <PropertyRef Name="connections_id" />
+          </Key>
+          <Property Name="connections_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sender_id" Type="int" Nullable="false" />
+          <Property Name="reciever_id" Type="int" Nullable="false" />
+          <Property Name="connections_date" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="connections_status" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="education">
+          <Key>
+            <PropertyRef Name="education_id" />
+          </Key>
+          <Property Name="education_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="256" />
+          <Property Name="InstitutionorOrganisation" Type="nvarchar(max)" />
+          <Property Name="Year_of_passing" Type="nvarchar" MaxLength="256" />
+          <Property Name="education_aggregate" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="posts">
+          <Key>
+            <PropertyRef Name="post_id" />
+          </Key>
+          <Property Name="post_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="post_date" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="post_title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="post_descp" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="gender" Type="nvarchar(max)" />
+          <Property Name="email" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="pwd" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="confirm_pwd" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="profile_type" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users_details">
+          <Key>
+            <PropertyRef Name="users_details_id" />
+          </Key>
+          <Property Name="users_details_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="short_description" Type="nvarchar(max)" />
+          <Property Name="organisation" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="education" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="experience" Type="nvarchar(max)" />
+          <Property Name="projects" Type="nvarchar(max)" />
+          <Property Name="certifications" Type="nvarchar(max)" />
+          <Property Name="awards" Type="nvarchar(max)" />
+          <Property Name="interests" Type="nvarchar(max)" />
+          <Property Name="dp" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <Association Name="fk_certification_id">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="certifications" Type="Self.certifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="certifications">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_connections_id_reciever">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="connections" Type="Self.connections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="connections">
+              <PropertyRef Name="reciever_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_connections_id_sender">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="connections" Type="Self.connections" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="connections">
+              <PropertyRef Name="sender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_education_id">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="education" Type="Self.education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="education">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_posts_id">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="posts" Type="Self.posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="posts">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_details_id">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="users_details" Type="Self.users_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_details">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ESModelStoreContainer">
+          <EntitySet Name="certifications" EntityType="Self.certifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="connections" EntityType="Self.connections" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="education" EntityType="Self.education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="posts" EntityType="Self.posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users_details" EntityType="Self.users_details" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_certification_id" Association="Self.fk_certification_id">
+            <End Role="users" EntitySet="users" />
+            <End Role="certifications" EntitySet="certifications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_connections_id_reciever" Association="Self.fk_connections_id_reciever">
+            <End Role="users" EntitySet="users" />
+            <End Role="connections" EntitySet="connections" />
+          </AssociationSet>
+          <AssociationSet Name="fk_connections_id_sender" Association="Self.fk_connections_id_sender">
+            <End Role="users" EntitySet="users" />
+            <End Role="connections" EntitySet="connections" />
+          </AssociationSet>
+          <AssociationSet Name="fk_education_id" Association="Self.fk_education_id">
+            <End Role="users" EntitySet="users" />
+            <End Role="education" EntitySet="education" />
+          </AssociationSet>
+          <AssociationSet Name="fk_posts_id" Association="Self.fk_posts_id">
+            <End Role="users" EntitySet="users" />
+            <End Role="posts" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_details_id" Association="Self.fk_users_details_id">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_details" EntitySet="users_details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="certification">
+          <Key>
+            <PropertyRef Name="certification_id" />
+          </Key>
+          <Property Name="certification_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Issued_By" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year_of_Certfication" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="user" Relationship="Self.fk_certification_id" FromRole="certifications" ToRole="users" />
+        </EntityType>
+        <EntityType Name="connection">
+          <Key>
+            <PropertyRef Name="connections_id" />
+          </Key>
+          <Property Name="connections_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sender_id" Type="Int32" Nullable="false" />
+          <Property Name="reciever_id" Type="Int32" Nullable="false" />
+          <Property Name="connections_date" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="connections_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.fk_connections_id_reciever" FromRole="connections" ToRole="users" />
+          <NavigationProperty Name="user1" Relationship="Self.fk_connections_id_sender" FromRole="connections" ToRole="users" />
+        </EntityType>
+        <EntityType Name="education">
+          <Key>
+            <PropertyRef Name="education_id" />
+          </Key>
+          <Property Name="education_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="InstitutionorOrganisation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Year_of_passing" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="education_aggregate" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="user" Relationship="Self.fk_education_id" FromRole="education" ToRole="users" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="post_id" />
+          </Key>
+          <Property Name="post_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="post_date" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.fk_posts_id" FromRole="posts" ToRole="users" />
+          <Property Name="post_title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="post_descp" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="confirm_pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="profile_type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="certifications" Relationship="Self.fk_certification_id" FromRole="users" ToRole="certifications" />
+          <NavigationProperty Name="connections" Relationship="Self.fk_connections_id_reciever" FromRole="users" ToRole="connections" />
+          <NavigationProperty Name="connections1" Relationship="Self.fk_connections_id_sender" FromRole="users" ToRole="connections" />
+          <NavigationProperty Name="educations" Relationship="Self.fk_education_id" FromRole="users" ToRole="education" />
+          <NavigationProperty Name="posts" Relationship="Self.fk_posts_id" FromRole="users" ToRole="posts" />
+          <NavigationProperty Name="users_details" Relationship="Self.fk_users_details_id" FromRole="users" ToRole="users_details" />
+        </EntityType>
+        <EntityType Name="users_details">
+          <Key>
+            <PropertyRef Name="users_details_id" />
+          </Key>
+          <Property Name="users_details_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="short_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="organisation" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="education" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="experience" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="projects" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="certifications" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="awards" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="interests" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="user" Relationship="Self.fk_users_details_id" FromRole="users_details" ToRole="users" />
+          <Property Name="dp" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="fk_certification_id">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="certifications" Type="Self.certification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="certifications">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_connections_id_reciever">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="connections" Type="Self.connection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="connections">
+              <PropertyRef Name="reciever_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_connections_id_sender">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="connections" Type="Self.connection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="connections">
+              <PropertyRef Name="sender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_education_id">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="education" Type="Self.education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="education">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_posts_id">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="posts" Type="Self.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="posts">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_details_id">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="users_details" Type="Self.users_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_details">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ESEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="certifications" EntityType="Self.certification" />
+          <EntitySet Name="connections" EntityType="Self.connection" />
+          <EntitySet Name="educations" EntityType="Self.education" />
+          <EntitySet Name="posts" EntityType="Self.post" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="users_details" EntityType="Self.users_details" />
+          <AssociationSet Name="fk_certification_id" Association="Self.fk_certification_id">
+            <End Role="users" EntitySet="users" />
+            <End Role="certifications" EntitySet="certifications" />
+          </AssociationSet>
+          <AssociationSet Name="fk_connections_id_reciever" Association="Self.fk_connections_id_reciever">
+            <End Role="users" EntitySet="users" />
+            <End Role="connections" EntitySet="connections" />
+          </AssociationSet>
+          <AssociationSet Name="fk_connections_id_sender" Association="Self.fk_connections_id_sender">
+            <End Role="users" EntitySet="users" />
+            <End Role="connections" EntitySet="connections" />
+          </AssociationSet>
+          <AssociationSet Name="fk_education_id" Association="Self.fk_education_id">
+            <End Role="users" EntitySet="users" />
+            <End Role="education" EntitySet="educations" />
+          </AssociationSet>
+          <AssociationSet Name="fk_posts_id" Association="Self.fk_posts_id">
+            <End Role="users" EntitySet="users" />
+            <End Role="posts" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_details_id" Association="Self.fk_users_details_id">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_details" EntitySet="users_details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ESModelStoreContainer" CdmEntityContainer="ESEntities">
+          <EntitySetMapping Name="certifications">
+            <EntityTypeMapping TypeName="ESModel.certification">
+              <MappingFragment StoreEntitySet="certifications">
+                <ScalarProperty Name="certification_id" ColumnName="certification_id" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="Issued_By" ColumnName="Issued_By" />
+                <ScalarProperty Name="Year_of_Certfication" ColumnName="Year_of_Certfication" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="connections">
+            <EntityTypeMapping TypeName="ESModel.connection">
+              <MappingFragment StoreEntitySet="connections">
+                <ScalarProperty Name="connections_id" ColumnName="connections_id" />
+                <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+                <ScalarProperty Name="reciever_id" ColumnName="reciever_id" />
+                <ScalarProperty Name="connections_date" ColumnName="connections_date" />
+                <ScalarProperty Name="connections_status" ColumnName="connections_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="educations">
+            <EntityTypeMapping TypeName="ESModel.education">
+              <MappingFragment StoreEntitySet="education">
+                <ScalarProperty Name="education_id" ColumnName="education_id" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="InstitutionorOrganisation" ColumnName="InstitutionorOrganisation" />
+                <ScalarProperty Name="Year_of_passing" ColumnName="Year_of_passing" />
+                <ScalarProperty Name="education_aggregate" ColumnName="education_aggregate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="posts">
+            <EntityTypeMapping TypeName="ESModel.post">
+              <MappingFragment StoreEntitySet="posts">
+                <ScalarProperty Name="post_descp" ColumnName="post_descp" />
+                <ScalarProperty Name="post_title" ColumnName="post_title" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="post_date" ColumnName="post_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="ESModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="confirm_pwd" ColumnName="confirm_pwd" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="profile_type" ColumnName="profile_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users_details">
+            <EntityTypeMapping TypeName="ESModel.users_details">
+              <MappingFragment StoreEntitySet="users_details">
+                <ScalarProperty Name="dp" ColumnName="dp" />
+                <ScalarProperty Name="users_details_id" ColumnName="users_details_id" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="short_description" ColumnName="short_description" />
+                <ScalarProperty Name="organisation" ColumnName="organisation" />
+                <ScalarProperty Name="education" ColumnName="education" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="projects" ColumnName="projects" />
+                <ScalarProperty Name="certifications" ColumnName="certifications" />
+                <ScalarProperty Name="awards" ColumnName="awards" />
+                <ScalarProperty Name="interests" ColumnName="interests" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

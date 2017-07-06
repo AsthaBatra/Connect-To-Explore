@@ -1,0 +1,177 @@
+﻿<div>
+    <div class="container-fluid">
+        <div class="login-screen">
+            <div class="login-center">
+                <div class="container min-height" style="margin-top: 20px;">
+                    <div class="row">
+                        <div class="col-xs-4 col-md-offset-8">
+                            <div class="login" id="card">
+                                <div class="front signin_form" name="signin">
+                                    <p>Login</p>
+                                    <form class="login-form" name="login" novalidate>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="email" class="form-control" data-ng-model="loginData.Email" name="email" placeholder="Type your email">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-user"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" data-ng-model="loginData.pwd" name="password" placeholder="Type your password">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-lock"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox">Remember me</label>
+                                        </div>
+
+                                        <div class="form-group sign-btn">
+                                            <button type="button" class="btn" data-ng-click="loginUser()">Log In</button>
+                                            <p><a href="" class="forgot" data-toggle="popover" title="Click for Password Recovery">Forgot Password??</a> </p>
+                                            <p><strong>Create a Account?</strong><br><a href="" id="flip-btn" class="signup signup_link">Sign up!</a></p>
+                                        </div>
+                                    </form>
+
+                                    <div class="container">
+                                        <div class="alert alert-danger col-md-4 control" data-ng-show="loginfailed==true">
+                                            <a href="" class="close" data-dismiss="alert" aria-label="close"> &times; </a>
+                                            <strong> Wrong Details! </strong> Username or password is incorrect!
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="back signup_form" style="opacity: 0;">
+                                    <p>Sign Up</p>
+                                    <form class="login-form" name="signup" novalidate>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="username" data-ng-model="registerData.name" placeholder="Name" required>
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-user"></i>
+                                                </span>
+                                            </div>
+                                            <div ng-class="{'has-error':signup.username.$invalid && signup.username.$dirty}">
+                                                <span class="help-block" ng-if="signup.username.$error.required && signup.username.$dirty">
+                                                    Username is required!
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="gender" data-ng-model="registerData.gender" placeholder="Gender" required>
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-user"></i>
+                                                </span>
+
+                                            </div>
+                                            <div ng-class="{'has-error':signup.gender.$invalid && signup.gender.$dirty}">
+                                                <span class="help-block" ng-if="signup.gender.$error.required && signup.gender.$dirty">
+                                                    Gender is required!
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="email" class="form-control" name="email" data-ng-model="registerData.email" placeholder="Email" required>
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-envelope"></i>
+                                                </span>
+                                            </div>
+                                            <div ng-class="{'has-error':signup.email.$invalid && signup.email.$dirty}">
+                                                <span class="help-block" ng-if="signup.email.$error.required && signup.email.$dirty">
+                                                    Email is required!
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" name="password" data-ng-model="registerData.pwd" placeholder="Password" required>
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-lock"></i>
+                                                </span>
+                                            </div>
+                                            <div ng-class="{'has-error':signup.password.$invalid && signup.password.$dirty}">
+                                                <span class="help-block" ng-if="signup.password.$error.required && signup.password.$dirty">
+                                                    Password is required!
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" name="confirmpassword" data-ng-model="registerData.confirm_pwd" placeholder="Confirm Password" required>
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-lock"></i>
+                                                </span>
+                                            </div>
+                                            <div ng-class="{'has-error':signup.confirmpassword.$invalid && signup.confirmpassword.$dirty}">
+                                                <span class="help-block" ng-if="signup.confirmpassword.$error.required && signup.confirmpassword.$dirty">
+                                                    Confirm your password!
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="contact" data-ng-model="registerData.PhoneNumber" placeholder="Contact">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-phone"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="profile_type" data-ng-model="registerData.profile_type" placeholder="Expert or Student" required>
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-user"></i>
+                                                </span>
+                                            </div>
+                                            <div ng-class="{'has-error':signup.profile_type.$invalid && signup.profile_type.$dirty}">
+                                                <span class="help-block" ng-if="signup.profile_type.$error.required && signup.profile_type.$dirty">
+                                                    Profile Type is required!
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+
+
+                                        <div class="form-group sign-btn">
+
+
+                                            <button ng-disabled="signup.$pristine || $signup.$dirty && signup.$invalid" id="btn-submit" class="btn btn-success" value="Sign up" data-toggle="popover" title="Signup for the Project Name" data-ng-click="register()"> Sign Up </button>
+
+                                            <p>Already have an Account? <a href="" id="unflip-btn" class="signup">Log in</a></p>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+

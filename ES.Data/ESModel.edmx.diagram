@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fbfaed20120d4282bd1cd61ef01eee03" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="ESModel.certification" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESModel.connection" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESModel.education" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESModel.post" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESModel.user" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESModel.users_details" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="ESModel.fk_certification_id" ManuallyRouted="false" />
+        <AssociationConnector Association="ESModel.fk_connections_id_reciever" ManuallyRouted="false" />
+        <AssociationConnector Association="ESModel.fk_connections_id_sender" ManuallyRouted="false" />
+        <AssociationConnector Association="ESModel.fk_education_id" ManuallyRouted="false" />
+        <AssociationConnector Association="ESModel.fk_posts_id" ManuallyRouted="false" />
+        <AssociationConnector Association="ESModel.fk_users_details_id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

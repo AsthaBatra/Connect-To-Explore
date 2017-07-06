@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="myApp">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+
+    <!--Begin base css style-->
+
+    <link href="/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="/Content/ui-bootstrap-csp.css" rel="stylesheet" />
+    <link href="/Content/style.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--> 
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,500" />
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700">
+
+</head>
+<body>
+    
+    <div data-ng-include="'Header/header.html'"></div>
+    <div data-ng-view=""></div>
+    <!--<div data-ng-include="'Footer/footer.html'"></div>-->
+
+    <!--Begin base JS style-->
+
+
+    <script src="/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/angular.min.js"></script>
+    <script src="/Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="/Scripts/angular-route.min.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmvVDEUYrFtpDiou4YciRuw6_h0T-lE0M&callback=myMap"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>-->
+
+
+    <script src="app.js"></script>
+    <script src="Aboutus/aboutusController.js"></script>
+    <script src="Contact/contactController.js"></script>
+    <script src="Home/homeController.js"></script>
+    <script src="MyConnections/myconnectionsController.js"></script>
+    <script src="MyProfile/myprofileController.js"></script>
+    <script src="Registration/registrationController.js"></script>
+    <script src="Home/userService.js"></script>
+    <script src="MyConnections/connectionService.js"></script>
+
+</body>
+</html>
